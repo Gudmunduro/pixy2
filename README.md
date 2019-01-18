@@ -1,3 +1,3 @@
-# Pixy 2 SDK and firmware
+# Pixy 2
 
-Pixy2 sdk with more functions inside the python interface
+Pixy 2 SDK with more functions inside the python interface
