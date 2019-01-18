@@ -119,3 +119,8 @@ void set_next_turn(int deg)
 {
   pixy_instance.setNextTurn(deg); 
 }
+
+int set_lamp(int upper, int lower)
+{
+  return pixy_instance.setLamp(upper, lower)
+}
