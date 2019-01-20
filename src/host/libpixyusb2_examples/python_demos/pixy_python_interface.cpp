@@ -124,3 +124,18 @@ int setLamp(int upper, int lower)
 {
   return pixy_instance.setLamp(upper, lower);
 }
+
+void setMode(bool turnDelayed, bool manualVector, bool whiteLine)
+{
+  uint8_t mode = 0;
+  if (turnDeleyed) {
+    mode = LINE_MODE_TURN_DELAYED; 
+  }
+  if (manualVector) {
+    mode = mode | LINE_MODE_MANUAL_SELECT_VECTOR;
+  }
+  if (whiteLine) {
+   mode = mode | LINE_MODE_WHITE_LINE; 
+  }
+  pixy_instance.line.setMode(mode);
+}
