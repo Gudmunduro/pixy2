@@ -8,27 +8,27 @@ int init()
   return  pixy_instance.init();
 }
 
-int change_prog (const char *  program_name)
+int changeProg (const char *  program_name)
 {
   return pixy_instance.changeProg (program_name);
 }
 
-int get_frame_width ()
+int getFrameWidth ()
 {
   return pixy_instance.frameWidth;
 }
 
-int get_frame_height ()
+int getFrameHeight ()
 {
   return pixy_instance.frameHeight;
 }
 
-void video_get_RGB (int  X, int  Y, uint8_t *  Red, uint8_t *  Green, uint8_t *  Blue)
+void videoGetRGB (int  X, int  Y, uint8_t *  Red, uint8_t *  Green, uint8_t *  Blue)
 {
   pixy_instance.video.getRGB (X, Y, Red, Green, Blue);
 }
 
-int ccc_get_blocks (int  max_blocks, struct Block *  blocks)
+int cccGetBlocks (int  max_blocks, struct Block *  blocks)
 {
   int  number_of_blocks_copied;
   int  blocks_available;
@@ -49,17 +49,17 @@ int ccc_get_blocks (int  max_blocks, struct Block *  blocks)
   return number_of_blocks_copied;
 }
 
-void line_get_all_features ()
+void lineGetAllFeatures ()
 {
   pixy_instance.line.getAllFeatures();
 }
 
-void line_get_main_features ()
+void lineGetMainFeatures ()
 {
   pixy_instance.line.getMainFeatures();
 }
 
-int line_get_vectors (int  max_vectors, struct Vector *  vectors)
+int lineGetVectors (int  max_vectors, struct Vector *  vectors)
 {
   int  number_of_vectors_copied;
   int  vectors_available;
@@ -76,7 +76,7 @@ int line_get_vectors (int  max_vectors, struct Vector *  vectors)
   return number_of_vectors_copied;
 }
 
-int line_get_intersections (int  max_intersections, struct IntersectionLine *  intersections)
+int lineGetIntersections (int  max_intersections, struct IntersectionLine *  intersections)
 {
   int  number_of_intersections_copied;
   int  intersections_available;
@@ -93,7 +93,7 @@ int line_get_intersections (int  max_intersections, struct IntersectionLine *  i
   return number_of_intersections_copied;
 }
 
-int line_get_barcodes (int  max_barcodes, struct Barcode *  barcodes)
+int lineGetBarcodes (int  max_barcodes, struct Barcode *  barcodes)
 {
   int  number_of_barcodes_copied;
   int  barcodes_available;
@@ -110,17 +110,17 @@ int line_get_barcodes (int  max_barcodes, struct Barcode *  barcodes)
   return number_of_barcodes_copied;
 }
 
-void set_servos (int  S1_Position, int  S2_Position)
+void setServos (int  S1_Position, int  S2_Position)
 {
   pixy_instance.setServos (S1_Position, S2_Position);
 }
 
-void set_next_turn(int deg)
+void setNextTurn(int deg)
 {
   pixy_instance.line.setNextTurn(deg); 
 }
 
-int set_lamp(int upper, int lower)
+int setLamp(int upper, int lower)
 {
   return pixy_instance.setLamp(upper, lower);
 }
