@@ -117,10 +117,10 @@ void set_servos (int  S1_Position, int  S2_Position)
 
 void set_next_turn(int deg)
 {
-  pixy_instance.setNextTurn(deg); 
+  pixy_instance.line.setNextTurn(deg); 
 }
 
 int set_lamp(int upper, int lower)
 {
-  return pixy_instance.setLamp(upper, lower)
+  return pixy_instance.setLamp(upper, lower);
 }
