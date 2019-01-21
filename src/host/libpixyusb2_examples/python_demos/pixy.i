@@ -26,19 +26,19 @@ extern int init();
   @param[in]   program_name  "color_connected_components"  Block detection program
                              "line"                        Line feature detection program
 */
-extern int change_prog (const char *  program_name);
+extern int changeProg (const char *  program_name);
 
 /*!
   @brief       Gets the Pixy sensor frame width.
   @return      Returns Pixy sensor width (in number of pixels) that is being sent to the host.
 */
-extern int get_frame_width ();
+extern int getFrameWidth ();
 
 /*!
   @brief       Gets the Pixy sensor frame height.
   @return      Returns Pixy sensor height (in number of pixels) that is being sent to the host.
 */
-extern int get_frame_height ();
+extern int getFrameHeight ();
 
 /*!
   @brief       Copy 'max_blocks' number of blocks to the address 'blocks'.
@@ -46,11 +46,11 @@ extern int get_frame_height ();
   @param[out]  blocks      Address to copy the blocks data.
   @return      Number of blocks copied to 'blocks'.
 */
-extern int ccc_get_blocks (int  max_blocks, BlockArray *  blocks);
+extern int cccGetBlocks (int  max_blocks, BlockArray *  blocks);
 
-extern void line_get_all_features ();
+extern void lineGetAllFeatures ();
 
-extern void line_get_main_features ();
+extern void lineGetMainFeatures ();
 
 /*!
   @brief       Copy 'max_intersections' number of intersections to the address 'intersections'.
@@ -58,7 +58,7 @@ extern void line_get_main_features ();
   @param[out]  intersections      Address to copy the intersection data.
   @return      Number of intersections copied to 'intersections'.
 */
-extern int line_get_intersections (int  max_intersections, IntersectionLineArray *  intersections);
+extern int lineGetIntersections (int  max_intersections, IntersectionLineArray *  intersections);
 
 /*!
   @brief       Copy 'max_vectors' number of vectors to the address 'vectors'.
@@ -66,7 +66,7 @@ extern int line_get_intersections (int  max_intersections, IntersectionLineArray
   @param[out]  vectors            Address to copy the vector data.
   @return      Number of vectors copied to 'vectors'.
 */
-extern int line_get_vectors (int max_vectors, VectorArray *  vectors);
+extern int lineGetVectors (int max_vectors, VectorArray *  vectors);
 
 /*!
   @brief       Copy 'max_barcode' number of barcodes to the address 'barcodes'.
@@ -74,14 +74,36 @@ extern int line_get_vectors (int max_vectors, VectorArray *  vectors);
   @param[out]  barcodes      Address to copy the barcode data.
   @return      Number of barcode objects copied to 'barcodes'.
 */
-extern int line_get_barcodes (int  max_barcodes, BarcodeArray *  barcodes);
+extern int lineGetBarcodes (int  max_barcodes, BarcodeArray *  barcodes);
 
 /*!
   @brief       Set servo position
   @param[in]   S1_Position  Servo 1 position
   @param[in]   S2_Position  Servo 2 position
 */
-extern void set_servos (int  S1_Position, int  S2_Position);
+extern void setServos (int  S1_Position, int  S2_Position);
+
+/*!
+  @brief       Sets the next turn
+  @param[in]   deg  Degree of the next turn
+*/
+extern void setNextTurn (int deg);
+
+/*!
+  @brief       Sets the lamp on and off
+  @param[in]   upper  Upper lamp
+  @param[in]   lower  Lower lamp
+*/
+extern int setLamp (int upper, int lower);
+
+/*!
+  @brief       Sets lline following mode
+  @param[in]   turnDelayed  Deley turn
+  @param[in]   manualVector Disable automatic vector selection
+  @param[in]   whiteLine    Make pixy look for a white line as the main line
+*/
+void setMode (bool turnDelayed, bool manualVector, bool whiteLine);
+
 %}
 
 %apply uint8_t *OUTPUT { uint8_t *  Red, uint8_t *  Green, uint8_t *  Blue};
@@ -94,7 +116,7 @@ extern void set_servos (int  S1_Position, int  S2_Position);
   @param[out]  Green  Memory address to write the Green color component value to.
   @param[out]  Blue   Memory address to write the Blue color component value to.
 */
-extern void video_get_RGB (int  X, int  Y, uint8_t *  Red, uint8_t *  Green, uint8_t *  Blue);
+extern void videoGetRGB (int  X, int  Y, uint8_t *  Red, uint8_t *  Green, uint8_t *  Blue);
 %}
 
 struct Block

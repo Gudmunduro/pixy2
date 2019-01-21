@@ -240,49 +240,61 @@ def init():
     return _pixy.init()
 init = _pixy.init
 
-def change_prog(program_name):
-    return _pixy.change_prog(program_name)
-change_prog = _pixy.change_prog
+def changeProg(program_name):
+    return _pixy.changeProg(program_name)
+changeProg = _pixy.changeProg
 
-def get_frame_width():
-    return _pixy.get_frame_width()
-get_frame_width = _pixy.get_frame_width
+def getFrameWidth():
+    return _pixy.getFrameWidth()
+getFrameWidth = _pixy.getFrameWidth
 
-def get_frame_height():
-    return _pixy.get_frame_height()
-get_frame_height = _pixy.get_frame_height
+def getFrameHeight():
+    return _pixy.getFrameHeight()
+getFrameHeight = _pixy.getFrameHeight
 
-def ccc_get_blocks(max_blocks, blocks):
-    return _pixy.ccc_get_blocks(max_blocks, blocks)
-ccc_get_blocks = _pixy.ccc_get_blocks
+def cccGetBlocks(max_blocks, blocks):
+    return _pixy.cccGetBlocks(max_blocks, blocks)
+cccGetBlocks = _pixy.cccGetBlocks
 
-def line_get_all_features():
-    return _pixy.line_get_all_features()
-line_get_all_features = _pixy.line_get_all_features
+def lineGetAllFeatures():
+    return _pixy.lineGetAllFeatures()
+lineGetAllFeatures = _pixy.lineGetAllFeatures
 
-def line_get_main_features():
-    return _pixy.line_get_main_features()
-line_get_main_features = _pixy.line_get_main_features
+def lineGetMainFeatures():
+    return _pixy.lineGetMainFeatures()
+lineGetMainFeatures = _pixy.lineGetMainFeatures
 
-def line_get_intersections(max_intersections, intersections):
-    return _pixy.line_get_intersections(max_intersections, intersections)
-line_get_intersections = _pixy.line_get_intersections
+def lineGetIntersections(max_intersections, intersections):
+    return _pixy.lineGetIntersections(max_intersections, intersections)
+lineGetIntersections = _pixy.lineGetIntersections
 
-def line_get_vectors(max_vectors, vectors):
-    return _pixy.line_get_vectors(max_vectors, vectors)
-line_get_vectors = _pixy.line_get_vectors
+def lineGetVectors(max_vectors, vectors):
+    return _pixy.lineGetVectors(max_vectors, vectors)
+lineGetVectors = _pixy.lineGetVectors
 
-def line_get_barcodes(max_barcodes, barcodes):
-    return _pixy.line_get_barcodes(max_barcodes, barcodes)
-line_get_barcodes = _pixy.line_get_barcodes
+def lineGetBarcodes(max_barcodes, barcodes):
+    return _pixy.lineGetBarcodes(max_barcodes, barcodes)
+lineGetBarcodes = _pixy.lineGetBarcodes
 
-def set_servos(S1_Position, S2_Position):
-    return _pixy.set_servos(S1_Position, S2_Position)
-set_servos = _pixy.set_servos
+def setServos(S1_Position, S2_Position):
+    return _pixy.setServos(S1_Position, S2_Position)
+setServos = _pixy.setServos
 
-def video_get_RGB(X, Y):
-    return _pixy.video_get_RGB(X, Y)
-video_get_RGB = _pixy.video_get_RGB
+def setNextTurn(deg):
+    return _pixy.setNextTurn(deg)
+setNextTurn = _pixy.setNextTurn
+
+def setLamp(upper, lower):
+    return _pixy.setLamp(upper, lower)
+setLamp = _pixy.setLamp
+
+def setMode(turnDelayed, manualVector, whiteLine):
+    return _pixy.setMode(turnDelayed, manualVector, whiteLine)
+setMode = _pixy.setMode
+
+def videoGetRGB(X, Y):
+    return _pixy.videoGetRGB(X, Y)
+videoGetRGB = _pixy.videoGetRGB
 class Block(_object):
     __swig_setmethods__ = {}
     __setattr__ = lambda self, name, value: _swig_setattr(self, Block, name, value)

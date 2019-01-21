@@ -3453,19 +3453,19 @@ extern int init();
   @param[in]   program_name  "color_connected_components"  Block detection program
                              "line"                        Line feature detection program
 */
-extern int change_prog (const char *  program_name);
+extern int changeProg (const char *  program_name);
 
 /*!
   @brief       Gets the Pixy sensor frame width.
   @return      Returns Pixy sensor width (in number of pixels) that is being sent to the host.
 */
-extern int get_frame_width ();
+extern int getFrameWidth ();
 
 /*!
   @brief       Gets the Pixy sensor frame height.
   @return      Returns Pixy sensor height (in number of pixels) that is being sent to the host.
 */
-extern int get_frame_height ();
+extern int getFrameHeight ();
 
 /*!
   @brief       Copy 'max_blocks' number of blocks to the address 'blocks'.
@@ -3473,11 +3473,11 @@ extern int get_frame_height ();
   @param[out]  blocks      Address to copy the blocks data.
   @return      Number of blocks copied to 'blocks'.
 */
-extern int ccc_get_blocks (int  max_blocks, BlockArray *  blocks);
+extern int cccGetBlocks (int  max_blocks, BlockArray *  blocks);
 
-extern void line_get_all_features ();
+extern void lineGetAllFeatures ();
 
-extern void line_get_main_features ();
+extern void lineGetMainFeatures ();
 
 /*!
   @brief       Copy 'max_intersections' number of intersections to the address 'intersections'.
@@ -3485,7 +3485,7 @@ extern void line_get_main_features ();
   @param[out]  intersections      Address to copy the intersection data.
   @return      Number of intersections copied to 'intersections'.
 */
-extern int line_get_intersections (int  max_intersections, IntersectionLineArray *  intersections);
+extern int lineGetIntersections (int  max_intersections, IntersectionLineArray *  intersections);
 
 /*!
   @brief       Copy 'max_vectors' number of vectors to the address 'vectors'.
@@ -3493,7 +3493,7 @@ extern int line_get_intersections (int  max_intersections, IntersectionLineArray
   @param[out]  vectors            Address to copy the vector data.
   @return      Number of vectors copied to 'vectors'.
 */
-extern int line_get_vectors (int max_vectors, VectorArray *  vectors);
+extern int lineGetVectors (int max_vectors, VectorArray *  vectors);
 
 /*!
   @brief       Copy 'max_barcode' number of barcodes to the address 'barcodes'.
@@ -3501,14 +3501,36 @@ extern int line_get_vectors (int max_vectors, VectorArray *  vectors);
   @param[out]  barcodes      Address to copy the barcode data.
   @return      Number of barcode objects copied to 'barcodes'.
 */
-extern int line_get_barcodes (int  max_barcodes, BarcodeArray *  barcodes);
+extern int lineGetBarcodes (int  max_barcodes, BarcodeArray *  barcodes);
 
 /*!
   @brief       Set servo position
   @param[in]   S1_Position  Servo 1 position
   @param[in]   S2_Position  Servo 2 position
 */
-extern void set_servos (int  S1_Position, int  S2_Position);
+extern void setServos (int  S1_Position, int  S2_Position);
+
+/*!
+  @brief       Sets the next turn
+  @param[in]   deg  Degree of the next turn
+*/
+extern void setNextTurn (int deg);
+
+/*!
+  @brief       Sets the lamp on and off
+  @param[in]   upper  Upper lamp
+  @param[in]   lower  Lower lamp
+*/
+extern int setLamp (int upper, int lower);
+
+/*!
+  @brief       Sets lline following mode
+  @param[in]   turnDelayed  Deley turn
+  @param[in]   manualVector Disable automatic vector selection
+  @param[in]   whiteLine    Make pixy look for a white line as the main line
+*/
+void setMode (bool turnDelayed, bool manualVector, bool whiteLine);
+
 
 
 SWIGINTERNINLINE PyObject*
@@ -3706,6 +3728,20 @@ SWIG_AsVal_int (PyObject * obj, int *val)
 }
 
 
+SWIGINTERN int
+SWIG_AsVal_bool (PyObject *obj, bool *val)
+{
+  int r;
+  if (!PyBool_Check(obj))
+    return SWIG_ERROR;
+  r = PyObject_IsTrue(obj);
+  if (r == -1)
+    return SWIG_ERROR;
+  if (val) *val = r ? true : false;
+  return SWIG_OK;
+}
+
+
 /*!
   @brief       Get pixel color components at the (X, Y) position on Pixy's sensor.
   @param[in]   X      X position of color pixel to get.
@@ -3714,7 +3750,7 @@ SWIG_AsVal_int (PyObject * obj, int *val)
   @param[out]  Green  Memory address to write the Green color component value to.
   @param[out]  Blue   Memory address to write the Blue color component value to.
 */
-extern void video_get_RGB (int  X, int  Y, uint8_t *  Red, uint8_t *  Green, uint8_t *  Blue);
+extern void videoGetRGB (int  X, int  Y, uint8_t *  Red, uint8_t *  Green, uint8_t *  Blue);
 
 
   #define SWIG_From_long   PyInt_FromLong 
@@ -4500,7 +4536,7 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_change_prog(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_changeProg(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   char *arg1 = (char *) 0 ;
   int res1 ;
@@ -4509,13 +4545,13 @@ SWIGINTERN PyObject *_wrap_change_prog(PyObject *SWIGUNUSEDPARM(self), PyObject 
   PyObject * obj0 = 0 ;
   int result;
   
-  if (!PyArg_ParseTuple(args,(char *)"O:change_prog",&obj0)) SWIG_fail;
+  if (!PyArg_ParseTuple(args,(char *)"O:changeProg",&obj0)) SWIG_fail;
   res1 = SWIG_AsCharPtrAndSize(obj0, &buf1, NULL, &alloc1);
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "change_prog" "', argument " "1"" of type '" "char const *""'");
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "changeProg" "', argument " "1"" of type '" "char const *""'");
   }
   arg1 = reinterpret_cast< char * >(buf1);
-  result = (int)change_prog((char const *)arg1);
+  result = (int)changeProg((char const *)arg1);
   resultobj = SWIG_From_int(static_cast< int >(result));
   if (alloc1 == SWIG_NEWOBJ) delete[] buf1;
   return resultobj;
@@ -4525,12 +4561,12 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_get_frame_width(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_getFrameWidth(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   int result;
   
-  if (!PyArg_ParseTuple(args,(char *)":get_frame_width")) SWIG_fail;
-  result = (int)get_frame_width();
+  if (!PyArg_ParseTuple(args,(char *)":getFrameWidth")) SWIG_fail;
+  result = (int)getFrameWidth();
   resultobj = SWIG_From_int(static_cast< int >(result));
   return resultobj;
 fail:
@@ -4538,12 +4574,12 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_get_frame_height(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_getFrameHeight(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   int result;
   
-  if (!PyArg_ParseTuple(args,(char *)":get_frame_height")) SWIG_fail;
-  result = (int)get_frame_height();
+  if (!PyArg_ParseTuple(args,(char *)":getFrameHeight")) SWIG_fail;
+  result = (int)getFrameHeight();
   resultobj = SWIG_From_int(static_cast< int >(result));
   return resultobj;
 fail:
@@ -4551,7 +4587,7 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_ccc_get_blocks(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_cccGetBlocks(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   int arg1 ;
   BlockArray *arg2 = (BlockArray *) 0 ;
@@ -4563,18 +4599,18 @@ SWIGINTERN PyObject *_wrap_ccc_get_blocks(PyObject *SWIGUNUSEDPARM(self), PyObje
   PyObject * obj1 = 0 ;
   int result;
   
-  if (!PyArg_ParseTuple(args,(char *)"OO:ccc_get_blocks",&obj0,&obj1)) SWIG_fail;
+  if (!PyArg_ParseTuple(args,(char *)"OO:cccGetBlocks",&obj0,&obj1)) SWIG_fail;
   ecode1 = SWIG_AsVal_int(obj0, &val1);
   if (!SWIG_IsOK(ecode1)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "ccc_get_blocks" "', argument " "1"" of type '" "int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "cccGetBlocks" "', argument " "1"" of type '" "int""'");
   } 
   arg1 = static_cast< int >(val1);
   res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_BlockArray, 0 |  0 );
   if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "ccc_get_blocks" "', argument " "2"" of type '" "BlockArray *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "cccGetBlocks" "', argument " "2"" of type '" "BlockArray *""'"); 
   }
   arg2 = reinterpret_cast< BlockArray * >(argp2);
-  result = (int)ccc_get_blocks(arg1,arg2);
+  result = (int)cccGetBlocks(arg1,arg2);
   resultobj = SWIG_From_int(static_cast< int >(result));
   return resultobj;
 fail:
@@ -4582,11 +4618,11 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_line_get_all_features(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_lineGetAllFeatures(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   
-  if (!PyArg_ParseTuple(args,(char *)":line_get_all_features")) SWIG_fail;
-  line_get_all_features();
+  if (!PyArg_ParseTuple(args,(char *)":lineGetAllFeatures")) SWIG_fail;
+  lineGetAllFeatures();
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -4594,11 +4630,11 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_line_get_main_features(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_lineGetMainFeatures(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   
-  if (!PyArg_ParseTuple(args,(char *)":line_get_main_features")) SWIG_fail;
-  line_get_main_features();
+  if (!PyArg_ParseTuple(args,(char *)":lineGetMainFeatures")) SWIG_fail;
+  lineGetMainFeatures();
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -4606,7 +4642,7 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_line_get_intersections(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_lineGetIntersections(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   int arg1 ;
   IntersectionLineArray *arg2 = (IntersectionLineArray *) 0 ;
@@ -4618,18 +4654,18 @@ SWIGINTERN PyObject *_wrap_line_get_intersections(PyObject *SWIGUNUSEDPARM(self)
   PyObject * obj1 = 0 ;
   int result;
   
-  if (!PyArg_ParseTuple(args,(char *)"OO:line_get_intersections",&obj0,&obj1)) SWIG_fail;
+  if (!PyArg_ParseTuple(args,(char *)"OO:lineGetIntersections",&obj0,&obj1)) SWIG_fail;
   ecode1 = SWIG_AsVal_int(obj0, &val1);
   if (!SWIG_IsOK(ecode1)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "line_get_intersections" "', argument " "1"" of type '" "int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "lineGetIntersections" "', argument " "1"" of type '" "int""'");
   } 
   arg1 = static_cast< int >(val1);
   res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_IntersectionLineArray, 0 |  0 );
   if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "line_get_intersections" "', argument " "2"" of type '" "IntersectionLineArray *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "lineGetIntersections" "', argument " "2"" of type '" "IntersectionLineArray *""'"); 
   }
   arg2 = reinterpret_cast< IntersectionLineArray * >(argp2);
-  result = (int)line_get_intersections(arg1,arg2);
+  result = (int)lineGetIntersections(arg1,arg2);
   resultobj = SWIG_From_int(static_cast< int >(result));
   return resultobj;
 fail:
@@ -4637,7 +4673,7 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_line_get_vectors(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_lineGetVectors(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   int arg1 ;
   VectorArray *arg2 = (VectorArray *) 0 ;
@@ -4649,18 +4685,18 @@ SWIGINTERN PyObject *_wrap_line_get_vectors(PyObject *SWIGUNUSEDPARM(self), PyOb
   PyObject * obj1 = 0 ;
   int result;
   
-  if (!PyArg_ParseTuple(args,(char *)"OO:line_get_vectors",&obj0,&obj1)) SWIG_fail;
+  if (!PyArg_ParseTuple(args,(char *)"OO:lineGetVectors",&obj0,&obj1)) SWIG_fail;
   ecode1 = SWIG_AsVal_int(obj0, &val1);
   if (!SWIG_IsOK(ecode1)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "line_get_vectors" "', argument " "1"" of type '" "int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "lineGetVectors" "', argument " "1"" of type '" "int""'");
   } 
   arg1 = static_cast< int >(val1);
   res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_VectorArray, 0 |  0 );
   if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "line_get_vectors" "', argument " "2"" of type '" "VectorArray *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "lineGetVectors" "', argument " "2"" of type '" "VectorArray *""'"); 
   }
   arg2 = reinterpret_cast< VectorArray * >(argp2);
-  result = (int)line_get_vectors(arg1,arg2);
+  result = (int)lineGetVectors(arg1,arg2);
   resultobj = SWIG_From_int(static_cast< int >(result));
   return resultobj;
 fail:
@@ -4668,7 +4704,7 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_line_get_barcodes(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_lineGetBarcodes(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   int arg1 ;
   BarcodeArray *arg2 = (BarcodeArray *) 0 ;
@@ -4680,18 +4716,18 @@ SWIGINTERN PyObject *_wrap_line_get_barcodes(PyObject *SWIGUNUSEDPARM(self), PyO
   PyObject * obj1 = 0 ;
   int result;
   
-  if (!PyArg_ParseTuple(args,(char *)"OO:line_get_barcodes",&obj0,&obj1)) SWIG_fail;
+  if (!PyArg_ParseTuple(args,(char *)"OO:lineGetBarcodes",&obj0,&obj1)) SWIG_fail;
   ecode1 = SWIG_AsVal_int(obj0, &val1);
   if (!SWIG_IsOK(ecode1)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "line_get_barcodes" "', argument " "1"" of type '" "int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "lineGetBarcodes" "', argument " "1"" of type '" "int""'");
   } 
   arg1 = static_cast< int >(val1);
   res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_BarcodeArray, 0 |  0 );
   if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "line_get_barcodes" "', argument " "2"" of type '" "BarcodeArray *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "lineGetBarcodes" "', argument " "2"" of type '" "BarcodeArray *""'"); 
   }
   arg2 = reinterpret_cast< BarcodeArray * >(argp2);
-  result = (int)line_get_barcodes(arg1,arg2);
+  result = (int)lineGetBarcodes(arg1,arg2);
   resultobj = SWIG_From_int(static_cast< int >(result));
   return resultobj;
 fail:
@@ -4699,7 +4735,7 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_set_servos(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_setServos(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   int arg1 ;
   int arg2 ;
@@ -4710,18 +4746,18 @@ SWIGINTERN PyObject *_wrap_set_servos(PyObject *SWIGUNUSEDPARM(self), PyObject *
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
   
-  if (!PyArg_ParseTuple(args,(char *)"OO:set_servos",&obj0,&obj1)) SWIG_fail;
+  if (!PyArg_ParseTuple(args,(char *)"OO:setServos",&obj0,&obj1)) SWIG_fail;
   ecode1 = SWIG_AsVal_int(obj0, &val1);
   if (!SWIG_IsOK(ecode1)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "set_servos" "', argument " "1"" of type '" "int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "setServos" "', argument " "1"" of type '" "int""'");
   } 
   arg1 = static_cast< int >(val1);
   ecode2 = SWIG_AsVal_int(obj1, &val2);
   if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "set_servos" "', argument " "2"" of type '" "int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "setServos" "', argument " "2"" of type '" "int""'");
   } 
   arg2 = static_cast< int >(val2);
-  set_servos(arg1,arg2);
+  setServos(arg1,arg2);
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -4729,7 +4765,98 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_video_get_RGB(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_setNextTurn(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  int arg1 ;
+  int val1 ;
+  int ecode1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:setNextTurn",&obj0)) SWIG_fail;
+  ecode1 = SWIG_AsVal_int(obj0, &val1);
+  if (!SWIG_IsOK(ecode1)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "setNextTurn" "', argument " "1"" of type '" "int""'");
+  } 
+  arg1 = static_cast< int >(val1);
+  setNextTurn(arg1);
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_setLamp(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  int arg1 ;
+  int arg2 ;
+  int val1 ;
+  int ecode1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  int result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:setLamp",&obj0,&obj1)) SWIG_fail;
+  ecode1 = SWIG_AsVal_int(obj0, &val1);
+  if (!SWIG_IsOK(ecode1)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "setLamp" "', argument " "1"" of type '" "int""'");
+  } 
+  arg1 = static_cast< int >(val1);
+  ecode2 = SWIG_AsVal_int(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "setLamp" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  result = (int)setLamp(arg1,arg2);
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_setMode(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  bool arg1 ;
+  bool arg2 ;
+  bool arg3 ;
+  bool val1 ;
+  int ecode1 = 0 ;
+  bool val2 ;
+  int ecode2 = 0 ;
+  bool val3 ;
+  int ecode3 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  PyObject * obj2 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OOO:setMode",&obj0,&obj1,&obj2)) SWIG_fail;
+  ecode1 = SWIG_AsVal_bool(obj0, &val1);
+  if (!SWIG_IsOK(ecode1)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "setMode" "', argument " "1"" of type '" "bool""'");
+  } 
+  arg1 = static_cast< bool >(val1);
+  ecode2 = SWIG_AsVal_bool(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "setMode" "', argument " "2"" of type '" "bool""'");
+  } 
+  arg2 = static_cast< bool >(val2);
+  ecode3 = SWIG_AsVal_bool(obj2, &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "setMode" "', argument " "3"" of type '" "bool""'");
+  } 
+  arg3 = static_cast< bool >(val3);
+  setMode(arg1,arg2,arg3);
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_videoGetRGB(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   int arg1 ;
   int arg2 ;
@@ -4752,18 +4879,18 @@ SWIGINTERN PyObject *_wrap_video_get_RGB(PyObject *SWIGUNUSEDPARM(self), PyObjec
   arg3 = &temp3;
   arg4 = &temp4;
   arg5 = &temp5;
-  if (!PyArg_ParseTuple(args,(char *)"OO:video_get_RGB",&obj0,&obj1)) SWIG_fail;
+  if (!PyArg_ParseTuple(args,(char *)"OO:videoGetRGB",&obj0,&obj1)) SWIG_fail;
   ecode1 = SWIG_AsVal_int(obj0, &val1);
   if (!SWIG_IsOK(ecode1)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "video_get_RGB" "', argument " "1"" of type '" "int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "videoGetRGB" "', argument " "1"" of type '" "int""'");
   } 
   arg1 = static_cast< int >(val1);
   ecode2 = SWIG_AsVal_int(obj1, &val2);
   if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "video_get_RGB" "', argument " "2"" of type '" "int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "videoGetRGB" "', argument " "2"" of type '" "int""'");
   } 
   arg2 = static_cast< int >(val2);
-  video_get_RGB(arg1,arg2,arg3,arg4,arg5);
+  videoGetRGB(arg1,arg2,arg3,arg4,arg5);
   resultobj = SWIG_Py_Void();
   if (SWIG_IsTmpObj(res3)) {
     resultobj = SWIG_Python_AppendOutput(resultobj, SWIG_From_unsigned_SS_char((*arg3)));
@@ -5827,17 +5954,20 @@ static PyMethodDef SwigMethods[] = {
 	 { "BarcodeArray_frompointer", _wrap_BarcodeArray_frompointer, METH_VARARGS, NULL},
 	 { "BarcodeArray_swigregister", BarcodeArray_swigregister, METH_VARARGS, NULL},
 	 { "init", _wrap_init, METH_VARARGS, NULL},
-	 { "change_prog", _wrap_change_prog, METH_VARARGS, NULL},
-	 { "get_frame_width", _wrap_get_frame_width, METH_VARARGS, NULL},
-	 { "get_frame_height", _wrap_get_frame_height, METH_VARARGS, NULL},
-	 { "ccc_get_blocks", _wrap_ccc_get_blocks, METH_VARARGS, NULL},
-	 { "line_get_all_features", _wrap_line_get_all_features, METH_VARARGS, NULL},
-	 { "line_get_main_features", _wrap_line_get_main_features, METH_VARARGS, NULL},
-	 { "line_get_intersections", _wrap_line_get_intersections, METH_VARARGS, NULL},
-	 { "line_get_vectors", _wrap_line_get_vectors, METH_VARARGS, NULL},
-	 { "line_get_barcodes", _wrap_line_get_barcodes, METH_VARARGS, NULL},
-	 { "set_servos", _wrap_set_servos, METH_VARARGS, NULL},
-	 { "video_get_RGB", _wrap_video_get_RGB, METH_VARARGS, NULL},
+	 { "changeProg", _wrap_changeProg, METH_VARARGS, NULL},
+	 { "getFrameWidth", _wrap_getFrameWidth, METH_VARARGS, NULL},
+	 { "getFrameHeight", _wrap_getFrameHeight, METH_VARARGS, NULL},
+	 { "cccGetBlocks", _wrap_cccGetBlocks, METH_VARARGS, NULL},
+	 { "lineGetAllFeatures", _wrap_lineGetAllFeatures, METH_VARARGS, NULL},
+	 { "lineGetMainFeatures", _wrap_lineGetMainFeatures, METH_VARARGS, NULL},
+	 { "lineGetIntersections", _wrap_lineGetIntersections, METH_VARARGS, NULL},
+	 { "lineGetVectors", _wrap_lineGetVectors, METH_VARARGS, NULL},
+	 { "lineGetBarcodes", _wrap_lineGetBarcodes, METH_VARARGS, NULL},
+	 { "setServos", _wrap_setServos, METH_VARARGS, NULL},
+	 { "setNextTurn", _wrap_setNextTurn, METH_VARARGS, NULL},
+	 { "setLamp", _wrap_setLamp, METH_VARARGS, NULL},
+	 { "setMode", _wrap_setMode, METH_VARARGS, NULL},
+	 { "videoGetRGB", _wrap_videoGetRGB, METH_VARARGS, NULL},
 	 { "Block_m_signature_set", _wrap_Block_m_signature_set, METH_VARARGS, NULL},
 	 { "Block_m_signature_get", _wrap_Block_m_signature_get, METH_VARARGS, NULL},
 	 { "Block_m_x_set", _wrap_Block_m_x_set, METH_VARARGS, NULL},
