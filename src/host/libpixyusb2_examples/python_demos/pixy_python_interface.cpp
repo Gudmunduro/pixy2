@@ -128,7 +128,7 @@ int setLamp(int upper, int lower)
 void setMode(bool turnDelayed, bool manualVector, bool whiteLine)
 {
   uint8_t mode = 0;
-  if (turnDeleyed) {
+  if (turnDelayed) {
     mode = LINE_MODE_TURN_DELAYED; 
   }
   if (manualVector) {
