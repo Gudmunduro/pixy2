@@ -139,3 +139,9 @@ void setMode(bool turnDelayed, bool manualVector, bool whiteLine)
   }
   pixy_instance.line.setMode(mode);
 }
+
+
+void setModeWhiteLine()
+{
+  pixy_instance.line.setMode(LINE_MODE_WHITE_LINE);
+}
