@@ -97,12 +97,17 @@ extern void setNextTurn (int deg);
 extern int setLamp (int upper, int lower);
 
 /*!
-  @brief       Sets lline following mode
+  @brief       Sets line following mode
   @param[in]   turnDelayed  Deley turn
   @param[in]   manualVector Disable automatic vector selection
   @param[in]   whiteLine    Make pixy look for a white line as the main line
 */
 void setMode (bool turnDelayed, bool manualVector, bool whiteLine);
+
+/*!
+  @brief       Sets line mode to white line
+*/
+void setModeWhiteLine ();
 
 %}
 
