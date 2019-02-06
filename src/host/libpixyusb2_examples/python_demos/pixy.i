@@ -90,6 +90,12 @@ extern void setServos (int  S1_Position, int  S2_Position);
 extern void setNextTurn (int deg);
 
 /*!
+  @brief       Sets the default turn
+  @param[in]   deg  Degree of the next turn
+*/
+extern void setDefaultTurn (int deg);
+
+/*!
   @brief       Sets the lamp on and off
   @param[in]   upper  Upper lamp
   @param[in]   lower  Lower lamp
