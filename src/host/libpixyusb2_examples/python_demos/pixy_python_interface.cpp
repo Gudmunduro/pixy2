@@ -120,6 +120,11 @@ void setNextTurn(int deg)
   pixy_instance.line.setNextTurn(deg); 
 }
 
+void setDefaultTurn(int deg)
+{
+  pixy_instance.line.setDefaultTurn(deg); 
+}
+
 int setLamp(int upper, int lower)
 {
   return pixy_instance.setLamp(upper, lower);
